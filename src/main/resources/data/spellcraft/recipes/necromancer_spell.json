@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "minecraft:wither_skeleton_skull"},
+    {"item": "minecraft:bone_block"},
+    {"item": "minecraft:soul_lantern"},
+    {"item": "minecraft:amethyst_shard"},
+    {"item": "minecraft:netherite_ingot"},
+    {"item": "minecraft:crying_obsidian"}
+  ],
+  "result": {
+    "item": "spellcraft:necromancer_spell"
+  }
+}

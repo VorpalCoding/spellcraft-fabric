@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "minecraft:glow_lichen"},
+    {"item": "minecraft:glowstone"},
+    {"item": "minecraft:golden_apple"},
+    {"item": "minecraft:amethyst_shard"},
+    {"item": "minecraft:netherite_ingot"},
+    {"item": "minecraft:crying_obsidian"}
+  ],
+  "result": {
+    "item": "spellcraft:healing_spell"
+  }
+}

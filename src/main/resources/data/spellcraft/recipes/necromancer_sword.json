@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " N ",
+    " N ",
+    " S "
+  ],
+  "key": {
+    "N": {"item": "spellcraft:necromancer_spell"},
+    "S": {"item": "minecraft:stick"}
+  },
+  "result": {
+    "item": "spellcraft:necromancer_sword"
+  }
+}

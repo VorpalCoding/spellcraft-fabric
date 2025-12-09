@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:netherite_sword"
+    },
+    "title": "Spell Swordsman",
+    "description": "Craft a spell sword and use it in combat",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "sword_crafted": {
+      "trigger": "minecraft:recipe_unlocked",
+      "recipe": "spellcraft:warden_sword"
+    }
+  },
+  "requirements": [
+    [
+      "sword_crafted"
+    ]
+  ]
+}

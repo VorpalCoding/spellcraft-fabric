@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "minecraft:clock"},
+    {"item": "minecraft:recovery_compass"},
+    {"item": "minecraft:purpur_block"},
+    {"item": "minecraft:amethyst_shard"},
+    {"item": "minecraft:netherite_ingot"},
+    {"item": "minecraft:crying_obsidian"}
+  ],
+  "result": {
+    "item": "spellcraft:time_spell"
+  }
+}

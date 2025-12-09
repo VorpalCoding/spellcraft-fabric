@@ -1,0 +1,29 @@
+package com.ztimelessz.spellcraft.spell.void_spell;
+
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
+import net.minecraft.util.math.Box;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import com.ztimelessz.spellcraft.spell.BaseAbility;
+
+public class VoidMastery extends BaseAbility {
+	public VoidMastery() { super("Void Mastery", "Enhanced - Ultimate void power", 750); }
+	@Override
+	public void execute(PlayerEntity player) {
+		if (isOnCooldown(player)) return;
+		World world = player.getWorld();
+		if (world.isClient) return;
+		player.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 200, 0, false, false));
+		Box box = new Box(player.getX() - 25, player.getY() - 25, player.getZ() - 25, player.getX() + 25, player.getY() + 25, player.getZ() + 25);
+		world.getOtherEntities(player, box).forEach(entity -> {
+			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
+				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
+				living.damage(player.getDamageSources().magic(), 15);
+				living.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 150, 1, false, false));
+			}
+		});
+		player.sendMessage(net.minecraft.text.Text.literal("§8Void Mastery!"), false);
+		setCooldown(player);
+	}
+}

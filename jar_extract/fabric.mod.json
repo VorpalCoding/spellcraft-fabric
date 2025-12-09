@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "spellcraft",
+  "version": "${version}",
+  "name": "Spell Craft",
+  "description": "A comprehensive spell crafting mod for Minecraft Fabric",
+  "authors": [
+    "ZTimelessZ"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "",
+    "issues": "",
+    "chat": ""
+  },
+  "license": "MIT",
+  "icon": "assets/spellcraft/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.ztimelessz.spellcraft.SpellCraftMod"
+    ],
+    "client": [
+      "com.ztimelessz.spellcraft.client.SpellCraftClient"
+    ]
+  },
+  "mixins": [
+    "spellcraft.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.9",
+    "minecraft": "~1.21.3",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

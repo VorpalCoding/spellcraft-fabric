@@ -1,0 +1,41 @@
+name: Build Fabric Mod JAR
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK 21
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+    
+    - name: Grant execute permission to gradle wrapper
+      run: chmod +x gradlew || true
+    
+    - name: Build with Gradle
+      run: gradle build --no-daemon
+    
+    - name: Upload JAR artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: spellcraft-mod-jar
+        path: build/libs/spellcraft-1.0.0.jar
+    
+    - name: Create Release
+      if: success()
+      uses: softprops/action-gh-release@v1
+      with:
+        files: build/libs/spellcraft-1.0.0.jar
+        tag_name: v1.0.0
+        body: "Spell Craft Mod JAR - Minecraft 1.21.10 Fabric"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "spellcraft:void_ore"}
+  ],
+  "result": {
+    "item": "spellcraft:void_gem"
+  }
+}
