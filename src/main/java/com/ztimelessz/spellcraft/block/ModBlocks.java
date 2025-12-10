@@ -42,7 +42,7 @@ public class ModBlocks {
 	}
 	
 	private static void registerBlock(String name, Block block) {
-		Registry.register(Registries.BLOCK, new Identifier("spellcraft", name), block);
+			Registry.register(Registries.BLOCK, Identifier.of("spellcraft", name), block);
 		ModItems.registerBlockItem(name, block);
 	}
 }

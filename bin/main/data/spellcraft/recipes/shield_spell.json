@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "minecraft:shield"},
+    {"item": "minecraft:iron_block"},
+    {"item": "minecraft:polished_blackstone"},
+    {"item": "minecraft:amethyst_shard"},
+    {"item": "minecraft:netherite_ingot"},
+    {"item": "minecraft:crying_obsidian"}
+  ],
+  "result": {
+    "item": "spellcraft:shield_spell"
+  }
+}

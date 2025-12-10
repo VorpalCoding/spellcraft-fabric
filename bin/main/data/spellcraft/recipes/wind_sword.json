@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " W ",
+    " W ",
+    " S "
+  ],
+  "key": {
+    "W": {"item": "spellcraft:wind_spell"},
+    "S": {"item": "minecraft:stick"}
+  },
+  "result": {
+    "item": "spellcraft:wind_sword"
+  }
+}

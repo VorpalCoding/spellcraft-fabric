@@ -19,30 +19,30 @@ public class CustomLootTables {
 	public static void registerLootTables() {
 		// Warden drops spell gems
 		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, supplier, setter) -> {
-			if (id.equals(new Identifier("minecraft", "entities/warden"))) {
+				if (id.equals(Identifier.of("minecraft", "entities/warden"))) {
 				LootPool pool = new LootPool.Builder()
 					.rolls(ConstantLootNumberProvider.create(1))
-					.with(ItemEntry.builder(Registries.ITEM.get(new Identifier("spellcraft", "warden_ore")))
+					.with(ItemEntry.builder(Registries.ITEM.get(Identifier.of("spellcraft", "warden_ore")))
 						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 3))))
 					.build();
 				supplier.withPool(pool);
 			}
 			
 			// Blazes drop fire gems
-			if (id.equals(new Identifier("minecraft", "entities/blaze"))) {
+				if (id.equals(Identifier.of("minecraft", "entities/blaze"))) {
 				LootPool pool = new LootPool.Builder()
 					.rolls(ConstantLootNumberProvider.create(1))
-					.with(ItemEntry.builder(Registries.ITEM.get(new Identifier("spellcraft", "fire_ore")))
+					.with(ItemEntry.builder(Registries.ITEM.get(Identifier.of("spellcraft", "fire_ore")))
 						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 2))))
 					.build();
 				supplier.withPool(pool);
 			}
 			
 			// Striders drop void gems
-			if (id.equals(new Identifier("minecraft", "entities/enderman"))) {
+				if (id.equals(Identifier.of("minecraft", "entities/enderman"))) {
 				LootPool pool = new LootPool.Builder()
 					.rolls(ConstantLootNumberProvider.create(1))
-					.with(ItemEntry.builder(Registries.ITEM.get(new Identifier("spellcraft", "void_ore")))
+				.with(ItemEntry.builder(Registries.ITEM.get(Identifier.of("spellcraft", "void_ore")))
 						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 2))))
 					.build();
 				supplier.withPool(pool);

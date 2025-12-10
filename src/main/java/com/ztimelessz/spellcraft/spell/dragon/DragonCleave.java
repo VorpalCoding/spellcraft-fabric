@@ -34,7 +34,7 @@ public class DragonCleave extends BaseAbility {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
 				living.damage(player.getDamageSources().playerAttack(player), 12);
 				living.setOnFireFor(5);
-				living.knockBack(0.8, player.getX() - entity.getX(), player.getZ() - entity.getZ());
+				living.takeKnockback(0.8, player.getX() - entity.getX(), player.getZ() - entity.getZ());
 			}
 		}
 		

@@ -12,15 +12,15 @@ public class VoidStrike extends BaseAbility {
 	@Override
 	public void execute(PlayerEntity player) {
 		if (isOnCooldown(player)) return;
-		World world = player.getWorld();
-		if (world.isClient) return;
+		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) return;
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		Vec3d lookDirection = player.getRotationVec(1.0f).normalize();
 		Vec3d dashVelocity = lookDirection.multiply(15);
 		player.setVelocity(dashVelocity);
-		for (var entity : world.getOtherEntities(player, player.getBoundingBox().expand(5))) {
+		for (var entity : serverWorld.getOtherEntities(player, player.getBoundingBox().expand(5))) {
 			if (entity instanceof net.minecraft.entity.LivingEntity) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
-				living.damage(player.getDamageSources().magic(), 10);
+				living.damage(serverWorld, player.getDamageSources().magic(), 10f);
 				living.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 80, 0, false, false));
 			}
 		}

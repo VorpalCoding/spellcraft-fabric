@@ -26,15 +26,13 @@ public class SpellSwordItem extends Item {
 	 * Execute the sword ability when right-clicked
 	 */
 	public void executeAbility(PlayerEntity player) {
-		World world = player.getWorld();
-		if (world.isClient) {
-			return;
-		}
-		
-		// Get the sword ability from the spell registry
-		IAbility swordAbility = SpellRegistry.getSwordAbility(spellType);
-		if (swordAbility != null) {
-			swordAbility.execute(player);
+		// Check if we're on the server side
+		if (player instanceof net.minecraft.server.network.ServerPlayerEntity) {
+			// Get the sword ability from the spell registry
+			IAbility swordAbility = SpellRegistry.getSwordAbility(spellType);
+			if (swordAbility != null) {
+				swordAbility.execute(player);
+			}
 		}
 	}
 }

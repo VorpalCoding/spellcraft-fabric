@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " T ",
+    " T ",
+    " S "
+  ],
+  "key": {
+    "T": {"item": "spellcraft:time_spell"},
+    "S": {"item": "minecraft:stick"}
+  },
+  "result": {
+    "item": "spellcraft:time_sword"
+  }
+}

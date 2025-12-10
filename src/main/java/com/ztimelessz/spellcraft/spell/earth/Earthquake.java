@@ -34,7 +34,7 @@ public class Earthquake extends BaseAbility {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
 				living.damage(player.getDamageSources().magic(), 8);
-				living.knockBack(1.5, player.getX() - entity.getX(), player.getZ() - entity.getZ());
+				living.takeKnockback(1.5, player.getX() - entity.getX(), player.getZ() - entity.getZ());
 			}
 		});
 		

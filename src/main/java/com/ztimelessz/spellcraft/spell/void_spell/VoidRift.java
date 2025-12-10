@@ -12,13 +12,13 @@ public class VoidRift extends BaseAbility {
 	@Override
 	public void execute(PlayerEntity player) {
 		if (isOnCooldown(player)) return;
-		World world = player.getWorld();
-		if (world.isClient) return;
+		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) return;
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		Box box = new Box(player.getX() - 25, player.getY() - 25, player.getZ() - 25, player.getX() + 25, player.getY() + 25, player.getZ() + 25);
-		world.getOtherEntities(player, box).forEach(entity -> {
+		serverWorld.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
-				living.damage(player.getDamageSources().magic(), 10);
+				living.damage(serverWorld, player.getDamageSources().magic(), 10f);
 			}
 		});
 		player.sendMessage(net.minecraft.text.Text.literal("§8Void Rift!"), false);

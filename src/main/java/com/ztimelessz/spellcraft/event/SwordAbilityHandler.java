@@ -15,7 +15,7 @@ public class SwordAbilityHandler implements UseItemCallback {
 	
 	@Override
 	public ActionResult interact(PlayerEntity player, World world, Hand hand) {
-		if (world.isClient) {
+		if (!(world instanceof net.minecraft.server.world.ServerWorld)) {
 			return ActionResult.PASS;
 		}
 		

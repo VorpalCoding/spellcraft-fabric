@@ -19,7 +19,7 @@ public class WindSlash extends BaseAbility {
 			if (entity instanceof net.minecraft.entity.LivingEntity) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
 				living.damage(serverWorld, player.getDamageSources().magic(), 7.0f);
-				living.knockBack(0.8, player.getX() - entity.getX(), player.getZ() - entity.getZ());
+				living.takeKnockback(0.8, player.getX() - entity.getX(), player.getZ() - entity.getZ());
 			}
 		}
 		player.sendMessage(net.minecraft.text.Text.literal("§fWind Slash!"), false);

@@ -36,7 +36,7 @@ public class DragonsFury extends BaseAbility {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
 				living.damage(player.getDamageSources().playerAttack(player), 15);
-				living.knockBack(0.6, player.getX() - entity.getX(), player.getZ() - entity.getZ());
+				living.takeKnockback(0.6, player.getX() - entity.getX(), player.getZ() - entity.getZ());
 				living.setOnFireFor(8);
 			}
 		});

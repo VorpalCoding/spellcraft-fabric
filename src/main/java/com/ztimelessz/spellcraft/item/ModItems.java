@@ -4,6 +4,8 @@ import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 
 /**
@@ -11,37 +13,14 @@ import net.minecraft.util.Identifier;
  */
 public class ModItems {
 	// Tool material for spell swords (netherite-tier)
-	public static final ToolMaterial SPELL_SWORD_MATERIAL = new ToolMaterial() {
-		@Override
-		public int getDurability() {
-			return 2031;
-		}
-
-		@Override
-		public float getMiningSpeedMultiplier() {
-			return 9.0f;
-		}
-
-		@Override
-		public float getAttackDamage() {
-			return 4.0f;
-		}
-
-		@Override
-		public int getMiningLevel() {
-			return 4;
-		}
-
-		@Override
-		public int getEnchantability() {
-			return 15;
-		}
-
-		@Override
-		public Ingredient getRepairIngredient() {
-			return Ingredient.ofItems(net.minecraft.item.Items.NETHERITE_INGOT);
-		}
-	};
+	public static final ToolMaterial SPELL_SWORD_MATERIAL = new ToolMaterial(
+		BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
+		2031,
+		9.0f,
+		4.0f,
+		15,
+		ItemTags.NETHERITE_TOOL_MATERIALS
+	);
 
 	// Spell swords
 	public static final SpellSwordItem WARDEN_SWORD = new SpellSwordItem("warden");
@@ -117,12 +96,12 @@ public class ModItems {
 		Registry.register(Registries.ITEM, new Identifier("spellcraft", name), item);
 	}
 	
-	private static void registerGem(String name, SpellGemItem item) {
-		Registry.register(Registries.ITEM, new Identifier("spellcraft", name), item);
+	public static void registerItem(String name, net.minecraft.item.Item item) {
+		Registry.register(Registries.ITEM, Identifier.of("spellcraft", name), item);
 	}
 	
 	public static void registerBlockItem(String name, net.minecraft.block.Block block) {
 		net.minecraft.item.BlockItem blockItem = new net.minecraft.item.BlockItem(block, new net.minecraft.item.Item.Settings());
-		Registry.register(Registries.ITEM, new Identifier("spellcraft", name), blockItem);
+		Registry.register(Registries.ITEM, Identifier.of("spellcraft", name), blockItem);
 	}
 }

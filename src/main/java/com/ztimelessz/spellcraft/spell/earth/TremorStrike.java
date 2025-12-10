@@ -35,7 +35,7 @@ public class TremorStrike extends BaseAbility {
 			if (entity instanceof net.minecraft.entity.LivingEntity) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
 				living.damage(player.getDamageSources().playerAttack(player), 9);
-				living.knockBack(0.7, player.getX() - entity.getX(), player.getZ() - entity.getZ());
+				living.takeKnockback(0.7, player.getX() - entity.getX(), player.getZ() - entity.getZ());
 				living.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 80, 1, false, false));
 			}
 		}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " L ",
+    " L ",
+    " S "
+  ],
+  "key": {
+    "L": {"item": "spellcraft:lightning_spell"},
+    "S": {"item": "minecraft:stick"}
+  },
+  "result": {
+    "item": "spellcraft:lightning_sword"
+  }
+}

@@ -19,7 +19,7 @@ public class Tempest extends BaseAbility {
 		serverWorld.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
-				living.knockBack(1.5, player.getX() - entity.getX(), player.getZ() - entity.getZ());
+				living.takeKnockback(1.5, player.getX() - entity.getX(), player.getZ() - entity.getZ());
 				living.damage(serverWorld, player.getDamageSources().magic(), 12.0f);
 			}
 		});

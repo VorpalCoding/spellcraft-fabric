@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "minecraft:sculk"},
+    {"item": "minecraft:sculk_sensor"},
+    {"item": "minecraft:deepslate"},
+    {"item": "minecraft:amethyst_shard"},
+    {"item": "minecraft:netherite_ingot"},
+    {"item": "minecraft:crying_obsidian"}
+  ],
+  "result": {
+    "item": "spellcraft:warden_spell"
+  }
+}
