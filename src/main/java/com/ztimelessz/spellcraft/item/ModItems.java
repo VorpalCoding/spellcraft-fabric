@@ -44,21 +44,21 @@ public class ModItems {
 	};
 
 	// Spell swords
-	public static final SpellSwordItem WARDEN_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "warden");
-	public static final SpellSwordItem FIRE_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "fire");
-	public static final SpellSwordItem ICE_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "ice");
-	public static final SpellSwordItem LIGHTNING_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "lightning");
-	public static final SpellSwordItem HEALING_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "healing");
-	public static final SpellSwordItem DRAGON_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "dragon");
-	public static final SpellSwordItem EARTH_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "earth");
-	public static final SpellSwordItem LIGHT_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "light");
-	public static final SpellSwordItem NATURE_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "nature");
-	public static final SpellSwordItem NECROMANCER_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "necromancer");
-	public static final SpellSwordItem POTION_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "potion");
-	public static final SpellSwordItem SHIELD_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "shield");
-	public static final SpellSwordItem TIME_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "time");
-	public static final SpellSwordItem VOID_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "void");
-	public static final SpellSwordItem WIND_SWORD = new SpellSwordItem(SPELL_SWORD_MATERIAL, "wind");
+	public static final SpellSwordItem WARDEN_SWORD = new SpellSwordItem("warden");
+	public static final SpellSwordItem FIRE_SWORD = new SpellSwordItem("fire");
+	public static final SpellSwordItem ICE_SWORD = new SpellSwordItem("ice");
+	public static final SpellSwordItem LIGHTNING_SWORD = new SpellSwordItem("lightning");
+	public static final SpellSwordItem HEALING_SWORD = new SpellSwordItem("healing");
+	public static final SpellSwordItem DRAGON_SWORD = new SpellSwordItem("dragon");
+	public static final SpellSwordItem EARTH_SWORD = new SpellSwordItem("earth");
+	public static final SpellSwordItem LIGHT_SWORD = new SpellSwordItem("light");
+	public static final SpellSwordItem NATURE_SWORD = new SpellSwordItem("nature");
+	public static final SpellSwordItem NECROMANCER_SWORD = new SpellSwordItem("necromancer");
+	public static final SpellSwordItem POTION_SWORD = new SpellSwordItem("potion");
+	public static final SpellSwordItem SHIELD_SWORD = new SpellSwordItem("shield");
+	public static final SpellSwordItem TIME_SWORD = new SpellSwordItem("time");
+	public static final SpellSwordItem VOID_SWORD = new SpellSwordItem("void");
+	public static final SpellSwordItem WIND_SWORD = new SpellSwordItem("wind");
 
 	// Spell gems
 	public static final SpellGemItem WARDEN_GEM = new SpellGemItem("warden", "Warden");
