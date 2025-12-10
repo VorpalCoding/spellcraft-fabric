@@ -80,7 +80,7 @@ public class PlayerSpellManager {
 	}
 	
 	private void saveSpells() {
-		NbtCompound playerData = player.getPersistentData();
+		NbtCompound playerData = player.getPersistentData().orElseGet(NbtCompound::new);
 		NbtCompound spellData = new NbtCompound();
 		NbtList spellList = new NbtList();
 		
@@ -97,19 +97,20 @@ public class PlayerSpellManager {
 	}
 	
 	private void loadSpells() {
-		NbtCompound playerData = player.getPersistentData();
+		NbtCompound playerData = player.getPersistentData().orElse(new NbtCompound());
 		if (!playerData.contains(SPELL_DATA_KEY)) {
 			return;
 		}
 		
 		NbtCompound spellData = playerData.getCompound(SPELL_DATA_KEY).orElse(new NbtCompound());
-		NbtList spellList = spellData.getList(ACTIVE_SPELLS_KEY, NbtElement.COMPOUND_TYPE);
+		NbtList spellList = spellData.getList(ACTIVE_SPELLS_KEY);
 		
 		activeSpells.clear();
 		for (int i = 0; i < spellList.size(); i++) {
-			NbtCompound spellTag = spellList.getCompound(i);
-			String spellId = spellTag.getString("SpellId");
-			Spell spell = SpellRegistry.getSpell(spellId, spellTag.getBoolean("Enhanced"));
+			NbtCompound spellTag = spellList.getCompound(i).orElse(new NbtCompound());
+			String spellId = spellTag.getString("SpellId").orElse("");
+			Boolean enhanced = spellTag.getBoolean("Enhanced").orElse(false);
+			Spell spell = SpellRegistry.getSpell(spellId, enhanced);
 			if (spell != null) {
 				activeSpells.add(spell);
 			}

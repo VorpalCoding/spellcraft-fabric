@@ -45,7 +45,7 @@ public class SpellLevelManager {
 	}
 	
 	private static void saveToNBT(PlayerEntity player) {
-		NbtCompound data = player.getPersistentData();
+		NbtCompound data = player.getPersistentData().orElseGet(NbtCompound::new);
 		NbtCompound spellData = data.getCompound("SpellCraftData").orElse(new NbtCompound());
 		
 		NbtCompound levels = new NbtCompound();
@@ -61,14 +61,14 @@ public class SpellLevelManager {
 	}
 	
 	public static void loadFromNBT(PlayerEntity player) {
-		NbtCompound data = player.getPersistentData();
+		NbtCompound data = player.getPersistentData().orElse(new NbtCompound());
 		NbtCompound spellData = data.getCompound("SpellCraftData").orElse(new NbtCompound());
 		
 		if (spellData.contains("SpellLevels")) {
 			NbtCompound levels = spellData.getCompound("SpellLevels").orElse(new NbtCompound());
 			for (String spellId : levels.getKeys()) {
 				String key = player.getUuid() + ":" + spellId;
-				spellLevels.put(key, levels.getInt(spellId));
+				spellLevels.put(key, levels.getInt(spellId).orElse(0));
 			}
 		}
 	}
