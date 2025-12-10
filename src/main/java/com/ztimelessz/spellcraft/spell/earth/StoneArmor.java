@@ -21,10 +21,9 @@ public class StoneArmor extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
-			return;
-		}
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) return;
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld world = serverPlayer.getServerWorld();
 		
 		player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 300, 2, false, false));
 		player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 300, 0, false, false));
