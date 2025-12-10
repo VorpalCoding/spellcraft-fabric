@@ -10,8 +10,9 @@ public class WindGust extends BaseAbility {
 	@Override
 	public void execute(PlayerEntity player) {
 		if (isOnCooldown(player)) return;
-		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) return;
-		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) return;
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld serverWorld = serverPlayer.getServerWorld();
 		Box box = new Box(player.getX() - 20, player.getY() - 20, player.getZ() - 20, player.getX() + 20, player.getY() + 20, player.getZ() + 20);
 		serverWorld.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {

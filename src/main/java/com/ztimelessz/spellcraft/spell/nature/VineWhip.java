@@ -15,14 +15,15 @@ public class VineWhip extends BaseAbility {
 	@Override
 	public void execute(PlayerEntity player) {
 		if (isOnCooldown(player)) return;
-		World world = player.getWorld();
-		if (world.isClient) return;
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) return;
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld world = serverPlayer.getServerWorld();
 		
 		Box box = new Box(player.getX() - 25, player.getY() - 25, player.getZ() - 25, player.getX() + 25, player.getY() + 25, player.getZ() + 25);
 		world.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
-				living.damage(player.getDamageSources().magic(), 6);
+				living.damage(world, player.getDamageSources().magic(), 6);
 				living.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 1, false, false));
 			}
 		});

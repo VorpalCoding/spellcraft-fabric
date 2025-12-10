@@ -10,8 +10,9 @@ public class WindSlash extends BaseAbility {
 	@Override
 	public void execute(PlayerEntity player) {
 		if (isOnCooldown(player)) return;
-		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) return;
-		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) return;
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld serverWorld = serverPlayer.getServerWorld();
 		Vec3d lookDirection = player.getRotationVec(1.0f).normalize();
 		Vec3d dashVelocity = lookDirection.multiply(16);
 		player.setVelocity(dashVelocity);

@@ -12,8 +12,9 @@ public class Rewind extends BaseAbility {
 	@Override
 	public void execute(PlayerEntity player) {
 		if (isOnCooldown(player)) return;
-		if (!(player.getWorld() instanceof ServerWorld)) return;
-		ServerWorld serverWorld = (ServerWorld) player.getWorld();
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) return;
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		ServerWorld serverWorld = serverPlayer.getServerWorld();
 		player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 250, 1, false, false));
 		player.sendMessage(net.minecraft.text.Text.literal("§dRewind!"), false);
 		setCooldown(player);

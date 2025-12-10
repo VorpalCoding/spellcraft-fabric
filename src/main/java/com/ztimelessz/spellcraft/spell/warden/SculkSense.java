@@ -24,10 +24,11 @@ public class SculkSense extends BaseAbility {
 			return;
 		}
 		
-		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) {
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) {
 			return;
 		}
-		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld serverWorld = serverPlayer.getServerWorld();
 		
 		// Find nearby players
 		Box box = new Box(
