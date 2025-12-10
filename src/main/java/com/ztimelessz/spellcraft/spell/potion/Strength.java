@@ -11,8 +11,7 @@ public class Strength extends BaseAbility {
 	@Override
 	public void execute(PlayerEntity player) {
 		if (isOnCooldown(player)) return;
-		World world = player.getWorld();
-		if (world.isClient) return;
+		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) return;
 		player.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 250, 2, false, false));
 		player.sendMessage(net.minecraft.text.Text.literal("§cStrength!"), false);
 		setCooldown(player);

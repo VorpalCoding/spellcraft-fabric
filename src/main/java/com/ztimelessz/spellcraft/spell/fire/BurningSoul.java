@@ -23,10 +23,10 @@ public class BurningSoul extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) {
 			return;
 		}
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		
 		// Apply protective fire aura to player
 		player.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 200, 0, false, false));
@@ -37,10 +37,10 @@ public class BurningSoul extends BaseAbility {
 			player.getX() + RADIUS, player.getY() + RADIUS, player.getZ() + RADIUS
 		);
 		
-		world.getOtherEntities(player, box).forEach(entity -> {
+		serverWorld.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
-				living.damage(player.getDamageSources().onFire(), 6);
+				living.damage(serverWorld, player.getDamageSources().onFire(), 6.0f);
 				living.setOnFireFor(15);
 			}
 		});

@@ -21,17 +21,18 @@ public class FlameDash extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player instanceof net.minecraft.server.network.ServerPlayerEntity)) {
 			return;
 		}
+		net.minecraft.server.network.ServerPlayerEntity serverPlayer = (net.minecraft.server.network.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld serverWorld = serverPlayer.getServerWorld();
 		
 		Vec3d lookDirection = player.getRotationVec(1.0f).normalize();
 		Vec3d dashVelocity = lookDirection.multiply(DASH_DISTANCE);
 		player.setVelocity(dashVelocity);
 		
 		// Burn enemies
-		for (var entity : world.getOtherEntities(player, player.getBoundingBox().expand(5))) {
+		for (var entity : serverWorld.getOtherEntities(player, player.getBoundingBox().expand(5))) {
 			if (entity instanceof net.minecraft.entity.LivingEntity) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
 				living.setOnFireFor(8);

@@ -24,10 +24,10 @@ public class SonicBoom extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) {
 			return;
 		}
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		
 		// Create blast effect
 		Box box = new Box(
@@ -37,7 +37,7 @@ public class SonicBoom extends BaseAbility {
 		
 		// Apply knockback and damage to nearby entities
 		int hitCount = 0;
-		for (Entity entity : world.getOtherEntities(player, box)) {
+		for (Entity entity : serverWorld.getOtherEntities(player, box)) {
 			if (entity instanceof LivingEntity livingEntity) {
 				// Calculate knockback direction
 				double dx = entity.getX() - player.getX();
@@ -55,7 +55,7 @@ public class SonicBoom extends BaseAbility {
 					);
 					
 					// Deal damage (4 hearts)
-					livingEntity.damage(player.getDamageSources().generic(), 8.0f);
+					livingEntity.damage(serverWorld, player.getDamageSources().generic(), 8.0f);
 					hitCount++;
 				}
 			}

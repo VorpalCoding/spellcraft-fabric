@@ -22,10 +22,10 @@ public class DivineJudgment extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player instanceof net.minecraft.server.network.ServerPlayerEntity)) {
 			return;
 		}
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		
 		player.heal(8);
 		player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 300, 0, false, false));
@@ -35,10 +35,10 @@ public class DivineJudgment extends BaseAbility {
 			player.getX() + 25, player.getY() + 25, player.getZ() + 25
 		);
 		
-		world.getOtherEntities(player, box).forEach(entity -> {
+		serverWorld.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
-				living.damage(player.getDamageSources().magic(), 15);
+				living.damage(serverWorld, player.getDamageSources().magic(), 15.0f);
 				living.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 150, 0, false, false));
 			}
 		});

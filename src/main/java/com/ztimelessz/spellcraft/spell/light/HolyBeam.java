@@ -22,22 +22,22 @@ public class HolyBeam extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player instanceof net.minecraft.server.network.ServerPlayerEntity)) {
 			return;
 		}
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		
 		Box box = new Box(
 			player.getX() - 30, player.getY() - 30, player.getZ() - 30,
 			player.getX() + 30, player.getY() + 30, player.getZ() + 30
 		);
 		
-		world.getOtherEntities(player, box).forEach(entity -> {
+		serverWorld.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
-				living.damage(player.getDamageSources().magic(), 7);
-				if (living instanceof net.minecraft.entity.undead.UndeadEntity) {
-					living.damage(player.getDamageSources().magic(), 7);
+				living.damage(serverWorld, player.getDamageSources().magic(), 7.0f);
+				if (living instanceof net.minecraft.entity.undead.Undead) {
+					living.damage(serverWorld, player.getDamageSources().magic(), 7.0f);
 				}
 			}
 		});

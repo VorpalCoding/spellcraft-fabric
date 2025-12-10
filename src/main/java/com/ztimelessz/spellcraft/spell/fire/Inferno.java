@@ -23,10 +23,10 @@ public class Inferno extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) {
 			return;
 		}
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		
 		// Burn nearby entities
 		Box box = new Box(
@@ -34,7 +34,7 @@ public class Inferno extends BaseAbility {
 			player.getX() + RADIUS, player.getY() + RADIUS, player.getZ() + RADIUS
 		);
 		
-		world.getOtherEntities(player, box).forEach(entity -> {
+		serverWorld.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof net.minecraft.entity.LivingEntity) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
 				living.setOnFireFor(10);

@@ -102,8 +102,8 @@ public class PlayerSpellManager {
 			return;
 		}
 		
-		NbtCompound spellData = playerData.getCompound(SPELL_DATA_KEY);
-		NbtList spellList = spellData.getList(ACTIVE_SPELLS_KEY, NbtTag.TAG_COMPOUND);
+		NbtCompound spellData = playerData.getCompound(SPELL_DATA_KEY).orElse(new NbtCompound());
+		NbtList spellList = spellData.getList(ACTIVE_SPELLS_KEY, NbtElement.COMPOUND_TYPE);
 		
 		activeSpells.clear();
 		for (int i = 0; i < spellList.size(); i++) {

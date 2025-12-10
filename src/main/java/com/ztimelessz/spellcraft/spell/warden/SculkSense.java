@@ -24,10 +24,10 @@ public class SculkSense extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) {
 			return;
 		}
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		
 		// Find nearby players
 		Box box = new Box(
@@ -36,7 +36,7 @@ public class SculkSense extends BaseAbility {
 		);
 		
 		int foundCount = 0;
-		for (PlayerEntity targetPlayer : world.getPlayers()) {
+		for (PlayerEntity targetPlayer : serverWorld.getPlayers()) {
 			if (targetPlayer != player && targetPlayer.getBoundingBox().intersects(box)) {
 				foundCount++;
 				player.sendMessage(

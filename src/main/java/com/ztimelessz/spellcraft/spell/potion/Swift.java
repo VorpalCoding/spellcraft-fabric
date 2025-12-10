@@ -11,8 +11,7 @@ public class Swift extends BaseAbility {
 	@Override
 	public void execute(PlayerEntity player) {
 		if (isOnCooldown(player)) return;
-		World world = player.getWorld();
-		if (world.isClient) return;
+		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) return;
 		player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 2, false, false));
 		player.sendMessage(net.minecraft.text.Text.literal("§eSwift!"), false);
 		setCooldown(player);

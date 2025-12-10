@@ -21,15 +21,15 @@ public class DivineProtection extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player instanceof net.minecraft.server.network.ServerPlayerEntity)) {
 			return;
 		}
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		
 		player.heal(10);
 		player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 250, 2, false, false));
 		
-		for (PlayerEntity nearby : world.getPlayers()) {
+		for (PlayerEntity nearby : serverWorld.getPlayers()) {
 			if (nearby != player && nearby.squaredDistanceTo(player) < 400) {
 				nearby.heal(8);
 				nearby.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 1, false, false));

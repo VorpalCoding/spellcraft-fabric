@@ -11,8 +11,7 @@ public class PowerPotion extends BaseAbility {
 	@Override
 	public void execute(PlayerEntity player) {
 		if (isOnCooldown(player)) return;
-		World world = player.getWorld();
-		if (world.isClient) return;
+		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) return;
 		player.heal(8);
 		player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 2, false, false));
 		player.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 300, 2, false, false));

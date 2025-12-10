@@ -22,10 +22,10 @@ public class FrostBolt extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player instanceof net.minecraft.server.network.ServerPlayerEntity)) {
 			return;
 		}
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		
 		// Get nearby entities and apply slowness
 		Box box = new Box(
@@ -33,11 +33,11 @@ public class FrostBolt extends BaseAbility {
 			player.getX() + 30, player.getY() + 30, player.getZ() + 30
 		);
 		
-		world.getOtherEntities(player, box).forEach(entity -> {
+		serverWorld.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
 				living.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 150, 2, false, false));
-				living.damage(player.getDamageSources().magic(), 4);
+				living.damage(serverWorld, player.getDamageSources().magic(), 4.0f);
 			}
 		});
 		

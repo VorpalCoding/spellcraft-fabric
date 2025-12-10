@@ -21,14 +21,14 @@ public class Rejuvenation extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) {
 			return;
 		}
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		
 		player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 2, false, false));
 		
-		for (PlayerEntity nearby : world.getPlayers()) {
+		for (PlayerEntity nearby : serverWorld.getPlayers()) {
 			if (nearby != player && nearby.squaredDistanceTo(player) < 400) {
 				nearby.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1, false, false));
 			}

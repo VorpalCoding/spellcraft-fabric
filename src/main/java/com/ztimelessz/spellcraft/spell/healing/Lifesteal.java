@@ -19,15 +19,15 @@ public class Lifesteal extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player instanceof net.minecraft.server.network.ServerPlayerEntity)) {
 			return;
 		}
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		
-		for (var entity : world.getOtherEntities(player, player.getBoundingBox().expand(5))) {
+		for (var entity : serverWorld.getOtherEntities(player, player.getBoundingBox().expand(5))) {
 			if (entity instanceof net.minecraft.entity.LivingEntity) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
-				living.damage(player.getDamageSources().playerAttack(player), 5);
+				living.damage(serverWorld, player.getDamageSources().playerAttack(player), 5.0f);
 				player.heal(5);
 			}
 		}

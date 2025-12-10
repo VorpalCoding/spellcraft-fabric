@@ -21,14 +21,14 @@ public class Radiance extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player instanceof net.minecraft.server.network.ServerPlayerEntity)) {
 			return;
 		}
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		
 		player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 200, 0, false, false));
 		
-		for (PlayerEntity nearby : world.getPlayers()) {
+		for (PlayerEntity nearby : serverWorld.getPlayers()) {
 			if (nearby != player && nearby.squaredDistanceTo(player) < 400) {
 				nearby.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 100, 0, false, false));
 			}

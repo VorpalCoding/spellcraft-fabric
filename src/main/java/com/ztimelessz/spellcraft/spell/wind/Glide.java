@@ -11,7 +11,7 @@ public class Glide extends BaseAbility {
 	@Override
 	public void execute(PlayerEntity player) {
 		if (isOnCooldown(player)) return;
-		if (player.getWorld().isClient) return;
+		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) return;
 		player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 250, 0, false, false));
 		player.sendMessage(net.minecraft.text.Text.literal("§fGlide!"), false);
 		setCooldown(player);

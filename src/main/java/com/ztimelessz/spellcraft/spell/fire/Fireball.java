@@ -21,18 +21,19 @@ public class Fireball extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player instanceof net.minecraft.server.network.ServerPlayerEntity)) {
 			return;
 		}
+		net.minecraft.server.network.ServerPlayerEntity serverPlayer = (net.minecraft.server.network.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld serverWorld = serverPlayer.getServerWorld();
 		
 		// Create fireball projectile
 		Vec3d lookDirection = player.getRotationVec(1.0f).normalize();
-		FireballEntity fireball = new FireballEntity(world, player, 
+		FireballEntity fireball = new FireballEntity(serverWorld, player, 
 			lookDirection.x, lookDirection.y, lookDirection.z, 2);
 		
 		fireball.setPos(player.getEyePos().add(lookDirection.multiply(1.5)));
-		world.spawnEntity(fireball);
+		serverWorld.spawnEntity(fireball);
 		
 		player.sendMessage(net.minecraft.text.Text.literal("§cFireball launched!"), false);
 		setCooldown(player);

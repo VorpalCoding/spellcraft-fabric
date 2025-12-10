@@ -22,17 +22,17 @@ public class Blizzard extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player instanceof net.minecraft.server.network.ServerPlayerEntity)) {
 			return;
 		}
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		
 		Box box = new Box(
 			player.getX() - 20, player.getY() - 20, player.getZ() - 20,
 			player.getX() + 20, player.getY() + 20, player.getZ() + 20
 		);
 		
-		world.getOtherEntities(player, box).forEach(entity -> {
+		serverWorld.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
 				living.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 3, false, false));

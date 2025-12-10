@@ -25,10 +25,10 @@ public class DomainExpansion extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) {
 			return;
 		}
+		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
 		
 		// Create sphere effect
 		Box box = new Box(
@@ -37,7 +37,7 @@ public class DomainExpansion extends BaseAbility {
 		);
 		
 		// Apply effects to nearby entities
-		world.getOtherEntities(player, box).forEach(entity -> {
+		serverWorld.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof PlayerEntity && entity != player) {
 				PlayerEntity targetPlayer = (PlayerEntity) entity;
 				// Apply darkness and wither (10 seconds)
