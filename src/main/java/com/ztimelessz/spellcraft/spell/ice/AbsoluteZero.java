@@ -37,8 +37,8 @@ public class AbsoluteZero extends BaseAbility {
 		world.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
-				living.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 300, 4, false, false));
-				living.damage(player.getDamageSources().magic(), 8);
+					living.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 300, 4, false, false));
+					living.damage(world, player.getDamageSources().magic(), (float)8);
 			}
 		});
 		

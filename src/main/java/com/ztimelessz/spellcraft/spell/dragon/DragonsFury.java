@@ -22,10 +22,11 @@ public class DragonsFury extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) {
 			return;
 		}
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld world = serverPlayer.getServerWorld();
 		
 		Box box = new Box(
 			player.getX() - 30, player.getY() - 30, player.getZ() - 30,
@@ -35,7 +36,7 @@ public class DragonsFury extends BaseAbility {
 		world.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
-				living.damage(player.getDamageSources().playerAttack(player), 15);
+					living.damage(world, player.getDamageSources().playerAttack(player), (float)15);
 				living.takeKnockback(0.6, player.getX() - entity.getX(), player.getZ() - entity.getZ());
 				living.setOnFireFor(8);
 			}

@@ -14,8 +14,9 @@ public class DarkPact extends BaseAbility {
 	@Override
 	public void execute(PlayerEntity player) {
 		if (isOnCooldown(player)) return;
-		if (!(player.getWorld() instanceof net.minecraft.server.world.ServerWorld)) return;
-		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) return;
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld serverWorld = serverPlayer.getServerWorld();
 		
 		if (player.getHealth() > 4) {
 			player.damage(serverWorld, serverWorld.getDamageSources().magic(), 4.0f);

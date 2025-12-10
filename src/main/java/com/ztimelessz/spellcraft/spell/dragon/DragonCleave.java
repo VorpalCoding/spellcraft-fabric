@@ -20,10 +20,11 @@ public class DragonCleave extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) {
 			return;
 		}
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld world = serverPlayer.getServerWorld();
 		
 		Vec3d lookDirection = player.getRotationVec(1.0f).normalize();
 		Vec3d dashVelocity = lookDirection.multiply(16);
@@ -32,7 +33,7 @@ public class DragonCleave extends BaseAbility {
 		for (var entity : world.getOtherEntities(player, player.getBoundingBox().expand(6))) {
 			if (entity instanceof net.minecraft.entity.LivingEntity) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
-				living.damage(player.getDamageSources().playerAttack(player), 12);
+					living.damage(world, player.getDamageSources().playerAttack(player), (float)12);
 				living.setOnFireFor(5);
 				living.takeKnockback(0.8, player.getX() - entity.getX(), player.getZ() - entity.getZ());
 			}

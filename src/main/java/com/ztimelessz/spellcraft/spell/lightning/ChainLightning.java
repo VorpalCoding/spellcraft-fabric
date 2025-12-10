@@ -20,10 +20,11 @@ public class ChainLightning extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) {
 			return;
 		}
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld world = serverPlayer.getServerWorld();
 		
 		Box box = new Box(
 			player.getX() - 25, player.getY() - 25, player.getZ() - 25,
@@ -33,7 +34,7 @@ public class ChainLightning extends BaseAbility {
 		world.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
-				living.damage(player.getDamageSources().magic(), 10);
+					living.damage(world, player.getDamageSources().magic(), (float)10);
 				living.setOnFireFor(3);
 			}
 		});

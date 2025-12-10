@@ -20,10 +20,11 @@ public class ThunderSlash extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) {
 			return;
 		}
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld world = serverPlayer.getServerWorld();
 		
 		Vec3d lookDirection = player.getRotationVec(1.0f).normalize();
 		Vec3d dashVelocity = lookDirection.multiply(14);
@@ -32,7 +33,7 @@ public class ThunderSlash extends BaseAbility {
 		for (var entity : world.getOtherEntities(player, player.getBoundingBox().expand(5))) {
 			if (entity instanceof net.minecraft.entity.LivingEntity) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
-				living.damage(player.getDamageSources().magic(), 8);
+					living.damage(world, player.getDamageSources().magic(), (float)8);
 				living.setOnFireFor(2);
 			}
 		}

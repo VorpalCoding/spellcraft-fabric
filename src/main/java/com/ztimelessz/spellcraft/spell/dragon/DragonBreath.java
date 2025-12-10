@@ -21,16 +21,16 @@ public class DragonBreath extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
-			return;
-		}
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) return;
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld world = serverPlayer.getServerWorld();
 		
 		Vec3d lookDirection = player.getRotationVec(1.0f).normalize();
 		for (int i = 0; i < 3; i++) {
 			Vec3d offset = lookDirection.rotateY((i - 1) * 0.3f);
-			FireballEntity fireball = new FireballEntity(world, player, offset.x, offset.y, offset.z, 3);
-			fireball.setPos(player.getEyePos().add(offset.multiply(1.5)));
+			FireballEntity fireball = new FireballEntity(world, player, offset, 3);
+			Vec3d pos = player.getEyePos().add(offset.multiply(1.5));
+			fireball.setPos(pos.x, pos.y, pos.z);
 			world.spawnEntity(fireball);
 		}
 		

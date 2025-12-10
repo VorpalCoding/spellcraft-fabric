@@ -21,10 +21,11 @@ public class Thunderbolt extends BaseAbility {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isClient) {
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) {
 			return;
 		}
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld world = serverPlayer.getServerWorld();
 		
 		Vec3d lookDirection = player.getRotationVec(1.0f).normalize().multiply(30);
 		Vec3d strikePos = player.getPos().add(lookDirection);

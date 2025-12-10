@@ -22,17 +22,11 @@ public class AncientDragonPower extends BaseAbility {
 			return;
 		}
 		
-		// Check if we're on the server side
-		if (!(player instanceof net.minecraft.server.network.ServerPlayerEntity)) {
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) {
 			return;
 		}
-		
-		World world = player.getWorld();
-		if (!(world instanceof net.minecraft.server.world.ServerWorld)) {
-			return;
-		}
-		
-		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) world;
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld serverWorld = serverPlayer.getServerWorld();
 		
 		// Give player temporary strength
 		player.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 150, 2, false, false));
@@ -45,7 +39,7 @@ public class AncientDragonPower extends BaseAbility {
 		world.getOtherEntities(player, box).forEach(entity -> {
 			if (entity instanceof net.minecraft.entity.LivingEntity && entity != player) {
 				net.minecraft.entity.LivingEntity living = (net.minecraft.entity.LivingEntity) entity;
-				living.damage(serverWorld.getDamageSources().playerAttack(player), 20);
+					living.damage(serverWorld, player.getDamageSources().playerAttack(player), (float)20);
 				living.takeKnockback(1.0, player.getX() - entity.getX(), player.getZ() - entity.getZ());
 				living.setOnFireFor(15);
 				living.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 2, false, false));

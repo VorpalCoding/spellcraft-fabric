@@ -21,10 +21,8 @@ public class Fireball extends BaseAbility {
 			return;
 		}
 		
-		if (!(player instanceof net.minecraft.server.network.ServerPlayerEntity)) {
-			return;
-		}
-		net.minecraft.server.network.ServerPlayerEntity serverPlayer = (net.minecraft.server.network.ServerPlayerEntity) player;
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) return;
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
 		net.minecraft.server.world.ServerWorld serverWorld = serverPlayer.getServerWorld();
 		
 		// Create fireball projectile

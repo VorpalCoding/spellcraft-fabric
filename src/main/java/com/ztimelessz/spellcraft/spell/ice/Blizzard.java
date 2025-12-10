@@ -22,10 +22,9 @@ public class Blizzard extends BaseAbility {
 			return;
 		}
 		
-		if (!(player instanceof net.minecraft.server.network.ServerPlayerEntity)) {
-			return;
-		}
-		net.minecraft.server.world.ServerWorld serverWorld = (net.minecraft.server.world.ServerWorld) player.getWorld();
+		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) return;
+		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.world.ServerWorld serverWorld = serverPlayer.getServerWorld();
 		
 		Box box = new Box(
 			player.getX() - 20, player.getY() - 20, player.getZ() - 20,
