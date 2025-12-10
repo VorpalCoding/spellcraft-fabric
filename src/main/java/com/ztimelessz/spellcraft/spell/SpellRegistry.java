@@ -27,13 +27,13 @@ public class SpellRegistry {
 			if (enhanced) {
 				return new Spell("warden", "Warden", Arrays.asList(
 					new com.ztimelessz.spellcraft.spell.warden.DomainExpansion(),
-					new com.ztimelessz.spellcraft.spell.warden.Locate(),
-					new com.ztimelessz.spellcraft.spell.warden.SculkSense()
+					new com.ztimelessz.spellcraft.spell.warden.SculkSense(),
+					new com.ztimelessz.spellcraft.spell.warden.SonicBoom()
 				), true);
 			} else {
 				return new Spell("warden", "Warden", Arrays.asList(
 					new com.ztimelessz.spellcraft.spell.warden.DomainExpansion(),
-					new com.ztimelessz.spellcraft.spell.warden.Locate()
+					new com.ztimelessz.spellcraft.spell.warden.SculkSense()
 				), false);
 			}
 		});
