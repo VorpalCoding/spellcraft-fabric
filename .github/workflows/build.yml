@@ -25,7 +25,7 @@ jobs:
       run: gradle build --no-daemon
     
     - name: Upload JAR artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: spellcraft-mod-jar
         path: build/libs/spellcraft-1.0.0.jar
