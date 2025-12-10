@@ -3,6 +3,7 @@ package com.ztimelessz.spellcraft.item;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import com.ztimelessz.spellcraft.spell.IAbility;
 import com.ztimelessz.spellcraft.spell.SpellRegistry;

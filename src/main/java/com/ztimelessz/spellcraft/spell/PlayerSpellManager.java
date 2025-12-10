@@ -3,7 +3,7 @@ package com.ztimelessz.spellcraft.spell;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.nbt.NbtTag;
+import net.minecraft.nbt.NbtElement;
 import java.util.ArrayList;
 import java.util.List;
 

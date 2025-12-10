@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import com.ztimelessz.spellcraft.item.SpellSwordItem;
 
@@ -13,7 +14,7 @@ import com.ztimelessz.spellcraft.item.SpellSwordItem;
 public class SwordAbilityHandler implements UseItemCallback {
 	
 	@Override
-	public ActionResult interact(PlayerEntity player, World world, net.minecraft.hand.Hand hand) {
+	public ActionResult interact(PlayerEntity player, World world, Hand hand) {
 		if (world.isClient) {
 			return ActionResult.PASS;
 		}
