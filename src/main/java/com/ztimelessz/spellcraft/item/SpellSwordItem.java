@@ -1,7 +1,7 @@
 package com.ztimelessz.spellcraft.item;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -11,11 +11,11 @@ import com.ztimelessz.spellcraft.spell.SpellRegistry;
 /**
  * Custom sword item that executes sword abilities on right-click
  */
-public class SpellSwordItem extends SwordItem {
+public class SpellSwordItem extends ToolItem {
 	private String spellType;
 	
 	public SpellSwordItem(ToolMaterial toolMaterial, String spellType) {
-		super(toolMaterial, 3, -2.4f, new Settings());
+		super(toolMaterial, new Settings());
 		this.spellType = spellType;
 	}
 	
