@@ -15,8 +15,8 @@ public class VineWhip extends BaseAbility {
 	@Override
 	public void execute(PlayerEntity player) {
 		if (isOnCooldown(player)) return;
-		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) return;
-		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		if (!(player instanceof net.minecraft.server.network.ServerPlayerEntity)) return;
+		net.minecraft.server.network.ServerPlayerEntity serverPlayer = (net.minecraft.server.network.ServerPlayerEntity) player;
 		net.minecraft.server.world.ServerWorld world = serverPlayer.getServerWorld();
 		
 		Box box = new Box(player.getX() - 25, player.getY() - 25, player.getZ() - 25, player.getX() + 25, player.getY() + 25, player.getZ() + 25);

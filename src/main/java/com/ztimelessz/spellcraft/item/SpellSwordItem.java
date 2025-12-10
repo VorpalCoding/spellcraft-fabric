@@ -27,7 +27,7 @@ public class SpellSwordItem extends Item {
 	 */
 	public void executeAbility(PlayerEntity player) {
 		// Check if we're on the server side
-		if (player instanceof net.minecraft.server.entity.ServerPlayerEntity) {
+		if (player instanceof net.minecraft.server.network.ServerPlayerEntity) {
 			// Get the sword ability from the spell registry
 			IAbility swordAbility = SpellRegistry.getSwordAbility(spellType);
 			if (swordAbility != null) {

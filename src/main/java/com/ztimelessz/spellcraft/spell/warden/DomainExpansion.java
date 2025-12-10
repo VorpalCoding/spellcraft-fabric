@@ -25,10 +25,10 @@ public class DomainExpansion extends BaseAbility {
 			return;
 		}
 		
-		if (!(player instanceof net.minecraft.server.entity.ServerPlayerEntity)) {
+		if (!(player instanceof net.minecraft.server.network.ServerPlayerEntity)) {
 			return;
 		}
-		net.minecraft.server.entity.ServerPlayerEntity serverPlayer = (net.minecraft.server.entity.ServerPlayerEntity) player;
+		net.minecraft.server.network.ServerPlayerEntity serverPlayer = (net.minecraft.server.network.ServerPlayerEntity) player;
 		net.minecraft.server.world.ServerWorld serverWorld = serverPlayer.getServerWorld();
 		
 		// Create sphere effect
